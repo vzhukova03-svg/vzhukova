@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f6f4" />
+    <meta name="description" content="Viktoriia OS — персональна система фокусу на Q4 2026." />
+    <title>VIKTORIIA OS</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='8' fill='%23181818'/%3E%3Cpath d='M15 16h8l9 29 9-29h8L36 50h-8z' fill='%23f6f6f4'/%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./styles.css?v=8" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">До змісту</a>
+    <div class="shell">
+      <header class="site-header">
+        <button class="brand" type="button" data-route="home" aria-label="Viktoriia OS — Головна">VIKTORIIA OS</button>
+        <nav class="nav" aria-label="Головна навігація">
+          <button type="button" data-route="home">Головна</button>
+          <button type="button" data-route="plan">План</button>
+          <button type="button" data-route="goals">Цілі</button>
+          <button type="button" data-route="inbox">Вхідні</button>
+        </nav>
+      </header>
+
+      <main id="main" tabindex="-1">
+        <section class="view" id="view-home" data-view="home" aria-labelledby="home-title">
+          <h1 id="home-title" class="sr-only">Головна</h1>
+          <div class="home-grid">
+            <div id="home-today"></div>
+            <div id="home-week"></div>
+          </div>
+          <div id="home-planning"></div>
+          <section id="home-upgrade" class="section-rule upgrade-home"></section>
+          <section id="home-utilities" class="section-rule utilities"></section>
+        </section>
+
+        <section class="view" id="view-plan" data-view="plan" aria-labelledby="plan-title" hidden>
+          <header class="page-heading">
+            <p class="eyebrow">Q4 · 2026</p>
+            <h1 id="plan-title">План</h1>
+          </header>
+          <div id="plan-content"></div>
+        </section>
+
+        <section class="view" id="view-goals" data-view="goals" aria-labelledby="goals-title" hidden>
+          <header class="page-heading">
+            <p class="eyebrow">Жовтень — грудень 2026</p>
+            <h1 id="goals-title">Цілі</h1>
+          </header>
+          <div id="goals-content"></div>
+        </section>
+
+        <section class="view" id="view-inbox" data-view="inbox" aria-labelledby="inbox-title" hidden>
+          <header class="page-heading page-heading-row">
+            <div>
+              <p class="eyebrow">Записати ≠ взяти в роботу</p>
+              <h1 id="inbox-title">Вхідні</h1>
+            </div>
+            <button class="text-action text-action-strong" type="button" data-open-capture>+ Додати ідею</button>
+          </header>
+          <div id="inbox-content"></div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="capture-dialog" class="capture-dialog" aria-labelledby="capture-title">
+      <form method="dialog" id="capture-form">
+        <div class="dialog-head">
+          <div>
+            <p class="eyebrow">Вхідні</p>
+            <h2 id="capture-title">Нова ідея</h2>
+          </div>
+          <button class="icon-button" value="cancel" aria-label="Закрити">×</button>
+        </div>
+        <label>
+          <span>Ідея</span>
+          <input name="idea" required autocomplete="off" placeholder="Що хочеться зберегти?" />
+        </label>
+        <label>
+          <span>Чому цікаво</span>
+          <textarea name="why" rows="2" placeholder="Коротко, якщо потрібно"></textarea>
+        </label>
+        <label>
+          <span>Коли повернутися</span>
+          <input name="revisit" autocomplete="off" placeholder="Наприклад: у грудні" />
+        </label>
+        <label>
+          <span>Статус</span>
+          <select name="status">
+            <option value="later" selected>Later / Inspiration</option>
+            <option value="now">Now</option>
+            <option value="not-now">Not Now</option>
+          </select>
+        </label>
+        <div class="dialog-actions">
+          <button class="text-action" value="cancel">Скасувати</button>
+          <button class="text-action text-action-strong" type="submit" value="default">Зберегти →</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="task-picker-dialog" class="capture-dialog task-picker-dialog" aria-labelledby="task-picker-title">
+      <div class="picker-shell">
+        <div class="dialog-head">
+          <div>
+            <p class="eyebrow">БАЗА ЗАВДАНЬ</p>
+            <h2 id="task-picker-title">Обрати з проєктів</h2>
+          </div>
+          <button class="icon-button" type="button" data-close-picker aria-label="Закрити">×</button>
+        </div>
+        <label class="picker-search-label">
+          <span class="sr-only">Пошук завдань</span>
+          <input id="task-picker-search" autocomplete="off" placeholder="Пошук за завданням або проєктом…" />
+        </label>
+        <div id="task-picker-results" class="picker-results"></div>
+      </div>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js?v=8"></script>
+  </body>
+</html>
